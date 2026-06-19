@@ -1,16 +1,34 @@
 #include <Arduino.h>
+#include <DHT.h>
 
-const int ledPin = 13;   // ใช้ LED onboard ของ Arduino UNO
+#define DHTPIN 4
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
-  pinMode(ledPin, OUTPUT);  // ตั้งค่าเป็น output
+  Serial.begin(9600);
+  dht.begin();
+  Serial.println("Starting DHT11 sensor...");
 }
 
 void loop() {
-  digitalWrite(ledPin, HIGH);  // เปิด LED
-  delay(500);                  // รอ 0.5 วินาที
+  delay(2000);
 
-  digitalWrite(ledPin, LOW);   // ปิด LED
-  delay(500);                  // รอ 0.5 วินาที
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.print(" %\t");
+
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" C");
 }
 
