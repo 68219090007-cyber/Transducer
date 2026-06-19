@@ -1,16 +1,20 @@
 #include <Arduino.h>
 
-const int ledPin = 13;   // ใช้ LED onboard ของ Arduino UNO
+const int LED1 = 12;  // LED1 ต่อกับ D12
+const int LED2 = 13;  // LED2 ต่อกับ D13
 
 void setup() {
-  pinMode(ledPin, OUTPUT);  // ตั้งค่าเป็น output
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(ledPin, HIGH);  // เปิด LED
-  delay(500);                  // รอ 0.5 วินาที
+  digitalWrite(LED1, HIGH);
+  digitalWrite(LED2, LOW);
+  delay(500);
 
-  digitalWrite(ledPin, LOW);   // ปิด LED
-  delay(500);                  // รอ 0.5 วินาที
+  digitalWrite(LED1, LOW);
+  digitalWrite(LED2, HIGH);
+  delay(500);
 }
 
