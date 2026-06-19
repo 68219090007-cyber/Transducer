@@ -1,18 +1,16 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+const int ledPin = 13;   // ใช้ LED onboard ของ Arduino UNO
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pinMode(ledPin, OUTPUT);  // ตั้งค่าเป็น output
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  digitalWrite(ledPin, HIGH);  // เปิด LED
+  delay(500);                  // รอ 0.5 วินาที
+
+  digitalWrite(ledPin, LOW);   // ปิด LED
+  delay(500);                  // รอ 0.5 วินาที
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}
